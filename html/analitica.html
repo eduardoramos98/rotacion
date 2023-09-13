@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+  <title>Analiaticas</title>
+</head>
+
+<body>
+  <div class="main-cont" id="dashboard">
+    <aside>
+      <div class="nav-cont">
+        <div class="top">
+          <div class="logo">
+            <img src="../images/logoSp.png" alt="" />
+          </div>
+          <div class="close">
+            <span class="material-icons-sharp"> close </span>
+          </div>
+        </div>
+
+        <div class="sidebar">
+          <a href="../index.html" class="active">
+            <span class="material-icons-sharp">grid_view</span>
+            <h3>Dahsboard</h3>
+          </a>
+          <a href="../html/usuarios.html">
+            <span class="material-icons-sharp">person_outline</span>
+            <h3>Usuarios</h3>
+          </a>
+          <a href="#">
+            <span class="material-icons-sharp">insights</span>
+            <h3>Analiaticas</h3>
+          </a>
+          <a href="../login.html">
+            <span class="material-icons-sharp">password</span>
+            <h3>Login</h3>
+          </a>
+          <a href="#">
+            <span class="material-icons-sharp"> logout </span>
+            <h3>Logout</h3>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <!-- Cards Sections -->
+      <div class="header">
+        <h1>Analiaticas</h1>
+        <p>Ingrese una para ver una predicción de rotaciones</p>
+        <div class="date">
+          <input type="date" id="fecha" />
+        </div>
+      </div>
+      <button onclick="guardarFecha()" class="boton">prediccion</button>
+      <div id="resultado"></div>
+      <!-- Ends Cards sections -->
+    </main>
+  </div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+
+<script type="text/javascript">
+
+  var modelo = null;
+
+  //Cargar modelo
+  (async () => {
+    console.log("Cargando modelo...");
+    modelo = await tf.loadLayersModel("../model.json");
+    console.log("Modelo cargado...");
+  })();
+
+  numeracion = 48;
+  function guardarFecha() {
+    var inputFecha = document.getElementById('fecha');
+    var fechaSeleccionada = inputFecha.value;
+
+    // Crear un objeto Date con la fecha seleccionada
+    var fecha = new Date(fechaSeleccionada);
+
+    // Obtener el año de la fecha seleccionada
+    var año = fecha.getFullYear();
+
+    // Verificar si el año es mayor a 2022
+    if (año > 2022) {
+      // Reiniciar la numeración en 49
+      numeracion++;
+    }
+
+    // Guardar la fecha y la numeración en variables o realizar cualquier operación adicional
+    var dato = { fecha: fechaSeleccionada, numeracion: numeracion };
+    var predict = numeracion;
+
+    // Imprimir el dato en la consola
+    console.log(predict);
+
+    if (modelo != null) {
+      var tensor = tf.tensor1d([parseInt(predict)]);
+      var prediccion = modelo.predict(tensor).dataSync();
+      var res = prediccion * -1;
+      res = Math.round(res);
+      document.getElementById("resultado").innerHTML = "El numero de rotacion sera: " + res;
+
+    }
+  }
+
+
+</script>
+
+</html>
+
+<!-- <canvas id="myChart"></canvas> -->

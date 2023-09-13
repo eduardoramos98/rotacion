@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+  <title>Charts</title>
+</head>
+
+<body>
+  <div class="main-cont" id="dashboard">
+    <aside>
+      <div class="nav-cont">
+        <div class="top">
+          <div class="logo">
+            <img src="./images/logoSp.png" alt="" />
+          </div>
+          <div class="close">
+            <span class="material-icons-sharp"> close </span>
+          </div>
+        </div>
+
+        <div class="sidebar">
+          <a href="#" class="active">
+            <span class="material-icons-sharp">grid_view</span>
+            <h3>Dahsboard</h3>
+          </a>
+          <a href="./html/usuarios.html">
+            <span class="material-icons-sharp">person_outline</span>
+            <h3>Usuarios</h3>
+          </a>
+          <a href="./html/analitica.html">
+            <span class="material-icons-sharp">insights</span>
+            <h3>Analiaticas</h3>
+          </a>
+          <a href="login.html">
+            <span class="material-icons-sharp">password</span>
+            <h3>Login</h3>
+          </a>
+          <a href="#">
+            <span class="material-icons-sharp"> logout </span>
+            <h3>Logout</h3>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <!-- Cards Sections -->
+      <div class="header">
+        <h1>Dahsboard</h1>
+      </div>
+      <div class="container">
+        <div class="card card-green">
+          <span class="material-icons-sharp"> analytics </span>
+          <div class="middle">
+            <div class="left">
+              <h2>Total empleados</h2>
+              <h1>108</h1>
+            </div>
+            <div class="card-content">
+              <canvas id="myChart"></canvas>
+            </div>
+          </div>
+          <small class="text-muted">Aculado del año</small>
+        </div>
+
+        <div class="card card-blue">
+          <span class="material-icons-sharp"> bar_chart </span>
+          <div class="middle">
+            <div class="left">
+              <h2>Promedio Rotacion</h2>
+              <h1>30%</h1>
+            </div>
+            <div class="card-content">
+              <canvas id="myChart2"></canvas>
+            </div>
+          </div>
+          <small class="text-muted">Acumulado del semestre </small>
+        </div>
+
+        <div class="card card-red">
+          <span class="material-icons-sharp"> bar_chart </span>
+          <div class="middle">
+            <div class="left">
+              <h2>Total Rotacion</h2>
+              <h1>32</h1>
+            </div>
+            <div class="card-content">
+              <canvas id="myChart3"></canvas>
+            </div>
+          </div>
+          <small class="text-muted">Acumulado del semestre</small>
+          <div></div>
+        </div>
+      </div>
+      <!-- Ends Cards sections -->
+
+      <div class="data-cont">
+        <h2>Empleados</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Empleado</th>
+              <th>Nombre</th>
+              <th>Aerea</th>
+              <th>Status</th>
+              <th>Fecha de ingreso</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <a href="./html/usuarios.html" id="ver-mas">Ver mas</a>
+      </div>
+    </main>
+  </div>
+
+</body>
+<script src="/Javascript/app.js"></script>
+<script src="../Javascript/tablas.js"></script>
+<script src="./Javascript/codigo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</html>
+
+<!-- <canvas id="myChart"></canvas> -->
